@@ -1,8 +1,9 @@
 import Container from "@/components/Container";
 import { Check, Star } from "lucide-react";
 import Image from "next/image";
-import { imageConsts } from "./consts/imageConsts";
+import { imageConsts, reviewsConsts } from "./consts/imageConsts";
 import Phone from "@/components/Phone";
+import { Icons } from "@/components/Icons";
 
 export default function Home() {
   return (
@@ -103,6 +104,41 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      {/* value propositionn section */}
+      <section className="bg-slate-100 py-24">
+        <Container className="flex flex-col items-center gap-16 sm:gap-32">
+          <div className="flex flex-col items-center gap-4 sm:gap-6 lg:flex-row">
+            {/* custom h2 */}
+            <h2 className="order-1 mt-2 text-balance text-center text-5xl font-bold !leading-tight tracking-tight text-gray-900 md:text-6xl">
+              What our{" "}
+              <span className="relative px-2">
+                customers{" "}
+                <Icons.underline className="pointer-events-none absolute inset-x-0 -bottom-6 hidden text-green-500 sm:block" />
+              </span>{" "}
+              say
+            </h2>
+            <Image
+              src={"/snake-2.png"}
+              alt="img"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="order-0 h-auto w-24 lg:order-2"
+            />
+          </div>
+
+          {/* reviews container */}
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+            {/* review */}
+            {reviewsConsts.map((review, i) => {
+              return <ReviewHomepage key={i} {...review} />;
+            })}
+          </div>
+        </Container>
+
+        
+      </section>
     </div>
   );
 }
@@ -117,5 +153,43 @@ const ImageHomepage = ({ src }: { src: string }) => {
       sizes="100vw"
       alt="user"
     />
+  );
+};
+
+interface ReviewHomepageProps {
+  name: string;
+  review: JSX.Element;
+  stars: number;
+  img: string;
+}
+
+const ReviewHomepage = ({ name, review, stars, img }: ReviewHomepageProps) => {
+  return (
+    <div className="flex flex-auto flex-col gap-4 lg:pr-8 xl:pr-20">
+      <div className="mb-2 flex gap-0.5">
+        {Array.from({ length: stars }).map((_, i) => (
+          <Star key={i} className="size-5 fill-green-600 text-green-600" />
+        ))}
+      </div>
+      <div className="text-balance text-lg leading-8">{review}</div>
+      {/* icon + name + verf */}
+      <div className="mt-2 flex gap-4">
+        <Image
+          src={img}
+          alt="img"
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="size-12 rounded-full object-cover"
+        />
+        <div className="flex flex-col">
+          <p className="font-semibold">{name}</p>
+          <div className="flex items-center gap-1.5 text-zinc-600">
+            <Check className="size-4 stroke-[3px] text-green-600" />
+            <p className="text-sm">Verified Purchase</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
