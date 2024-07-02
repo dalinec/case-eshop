@@ -80,6 +80,7 @@ export default function Home() {
           {/* wrapper right */}
           <div className="col-span-full mt-32 flex h-fit w-full justify-center px-8 sm:px-16 md:px-0 lg:col-span-1 lg:mx-0 lg:mt-20">
             <div className="relative md:max-w-xl">
+              {/* decor */}
               <Image
                 src={"/your-image.png"}
                 alt="yrimg"
@@ -88,6 +89,7 @@ export default function Home() {
                 sizes="100vw"
                 className="absolute -top-20 left-56 hidden h-auto w-40 select-none sm:block lg:hidden lg:w-52 xl:block"
               />
+              {/* decor line */}
               <Image
                 src={"/line.png"}
                 alt="line"
