@@ -4,6 +4,7 @@ import Image from "next/image";
 import { imageConsts, reviewsConsts } from "./consts/imageConsts";
 import Phone from "@/components/Phone";
 import { Icons } from "@/components/Icons";
+import Reviews from "@/components/Reviews";
 
 export default function Home() {
   return (
@@ -128,16 +129,17 @@ export default function Home() {
             />
           </div>
 
-          {/* reviews container */}
+          {/* Testimonmials container */}
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            {/* review */}
+            {/* testimonials */}
             {reviewsConsts.map((review, i) => {
               return <ReviewHomepage key={i} {...review} />;
             })}
           </div>
         </Container>
-
-        
+        <div className="pt-16">
+          <Reviews />
+        </div>
       </section>
     </div>
   );
