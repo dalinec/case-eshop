@@ -1,10 +1,16 @@
 import Container from "@/components/Container";
-import { Check, Star } from "lucide-react";
+import { ArrowRight, Check, Star } from "lucide-react";
 import Image from "next/image";
-import { imageConsts, reviewsConsts } from "./consts/imageConsts";
+import {
+  homePageListConsts,
+  imageConsts,
+  reviewsConsts,
+} from "./consts/imageConsts";
 import Phone from "@/components/Phone";
 import { Icons } from "@/components/Icons";
 import Reviews from "@/components/Reviews";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -141,6 +147,64 @@ export default function Home() {
           <Reviews />
         </div>
       </section>
+
+      <section>
+        <Container className="py-24">
+          <div className="mb-12 px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl sm:text-center">
+              <h2 className="order-1 mt-2 text-balance text-center text-5xl font-bold !leading-tight tracking-tight text-gray-900 md:text-6xl">
+                Upload your phote and get{" "}
+                <span className="relative bg-green-600 px-2 text-white">
+                  your own case{" "}
+                </span>{" "}
+                now
+              </h2>
+            </div>
+          </div>
+
+          <div className="mx-auto max-w-6xl px-6 md:py-8 lg:px-8">
+            <div className="relative flex grid-cols-2 flex-col items-center gap-40 md:grid">
+              <Image
+                alt="img"
+                src="/arrow.png"
+                width={0}
+                height={0}
+                sizes="100vw"
+                className="absolute left-[55%] top-[25rem] z-10 h-full max-h-[30px] w-fit -translate-x-[55%] -translate-y-1/2 rotate-90 md:top-1/2 md:h-auto md:rotate-0"
+              />
+              <div className="relative h-80 w-full max-w-sm rounded-xl bg-gray-900/5 ring-inset ring-gray-900/10 md:h-full md:justify-self-end lg:rounded-2xl">
+                <Image
+                  alt="img"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  src="/horse.jpg"
+                  className="h-full w-full rounded-md bg-white object-cover shadow-2xl ring-1 ring-gray-900/10"
+                />
+              </div>
+              <Phone className="mx-auto w-60" imgSrc="/horse_phone.jpg" />
+            </div>
+          </div>
+
+          <ul className="mx-auto mt-12 w-fit max-w-prose space-y-2 sm:text-lg">
+            {homePageListConsts.map((item, i) => {
+              return <List key={i} listItem={item} />;
+            })}
+
+            <div className="flex justify-center">
+              <Link
+                className={buttonVariants({
+                  size: "lg",
+                  className: "mx-auto mt-8",
+                })}
+                href={"/configure/upload"}
+              >
+                Create your case now <ArrowRight className="ml-1.5 size-4" />
+              </Link>
+            </div>
+          </ul>
+        </Container>
+      </section>
     </div>
   );
 }
@@ -193,5 +257,14 @@ const ReviewHomepage = ({ name, review, stars, img }: ReviewHomepageProps) => {
         </div>
       </div>
     </div>
+  );
+};
+
+const List = ({ listItem }: { listItem: string }) => {
+  return (
+    <li className="w-fit">
+      <Check className="mr-1.5 inline h-5 w-5 text-green-600" />
+      {listItem}
+    </li>
   );
 };

@@ -49,3 +49,19 @@ export const PHONES = [
   "/testimonials/5.jpg",
   "/testimonials/6.jpg",
 ];
+
+export const POSSIBLE_ANIMATION_DELAYS = [
+  "0s",
+  "0.1s",
+  "0.2s",
+  "0.3s",
+  "0.4s",
+  "0.5s",
+];
+
+export const homePageListConsts = [
+  "High-quality silicone material",
+  "Scratch- and fingerprint resistant coating",
+  "Wireless charging compatible",
+  "5 year print warranty",
+];

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Container from "./Container";
 import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
-import { PHONES } from "@/app/consts/imageConsts";
+import { PHONES, POSSIBLE_ANIMATION_DELAYS } from "@/app/consts/imageConsts";
 import { cn } from "@/lib/utils";
 import Phone from "./Phone";
 
@@ -12,13 +12,13 @@ const Reviews = () => {
   return (
     <Container className="relative max-w-5xl">
       <Image
-        alt="what-are-pp-buying"
+        alt="what-are-ppl-buying"
         src={"/what-people-are-buying.png"}
         width={0}
         height={0}
         sizes="100vw"
         aria-hidden="true"
-        className="absolute -left-32 top-1/3 hidden select-none xl:block"
+        className="absolute -left-32 top-1/3 hidden h-auto w-fit select-none xl:block"
       />
       <ReviewGrid />
     </Container>
@@ -79,9 +79,9 @@ const ReviewGrid = () => {
             msPerPixel={10}
           />
         </>
-      ) : (
-        ""
-      )}
+      ) : null}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-slate-100" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-100" />
     </div>
   );
 };
@@ -121,7 +121,7 @@ const ReviewColumn = ({
       className={cn("animate-marquee space-y-8 py-4", className)}
       style={{ "--marquee-duration": duration } as React.CSSProperties}
     >
-      {/* contat -> so we can just show more of the same revies */}
+      {/* contat -> so we can just show more of the same reviews */}
       {reviews.concat(reviews).map((imgSrc, reviewIndex) => {
         return (
           <Review
@@ -140,15 +140,6 @@ interface ReviewProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const Review = ({ imgSrc, className, ...props }: ReviewProps) => {
-  const POSSIBLE_ANIMATION_DELAYS = [
-    "0s",
-    "0.1s",
-    "0.2s",
-    "0.3s",
-    "0.4s",
-    "0.5s",
-  ];
-
   const animationDelay =
     POSSIBLE_ANIMATION_DELAYS[
       Math.floor(Math.random() * POSSIBLE_ANIMATION_DELAYS.length)
