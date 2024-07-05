@@ -115,7 +115,7 @@ export default function Home() {
               What our{" "}
               <span className="relative px-2">
                 customers{" "}
-                <Icons.underline className="pointer-events-none absolute inset-x-0 -bottom-6 hidden text-green-500 sm:block" />
+                <Icons.underline className="jusce pointer-events-none absolute inset-x-0 -bottom-6 hidden text-green-500 sm:block" />
               </span>{" "}
               say
             </h2>
