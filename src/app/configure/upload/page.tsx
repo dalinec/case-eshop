@@ -3,10 +3,16 @@
 import Container from "@/components/Container";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
+import Dropzone, { FileRejection } from "react-dropzone";
 
 const UploadConfigPage = () => {
   //tracking the state and updating the color is we are dragging over
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
+
+  const onDropRejected = () => {};
+  const onDropAccepted = () => {
+    console.log("accepted");
+  };
 
   return (
     <div
@@ -17,7 +23,29 @@ const UploadConfigPage = () => {
         },
       )}
     >
-      <div className="relative flex w-full flex-1 flex-col items-center justify-center"></div>
+      <div className="relative flex w-full flex-1 flex-col items-center justify-center">
+        <Dropzone
+          onDropRejected={onDropRejected}
+          onDropAccepted={onDropAccepted}
+          accept={{
+            "image/png": [".png"],
+            "image/jpeg": [".jpeg"],
+            "image/jpg": [".jpg"],
+          }}
+          onDragEnter={() => setIsDragOver(true)}
+          onDragLeave={() => setIsDragOver(false)}
+        >
+          {({ getRootProps, getInputProps }) => (
+            <div
+              className="flex h-full w-full flex-1 flex-col items-center justify-center"
+              {...getRootProps()}
+            >
+              <input {...getInputProps()} />
+              asd
+            </div>
+          )}
+        </Dropzone>
+      </div>
     </div>
   );
 };
