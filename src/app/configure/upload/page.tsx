@@ -1,6 +1,7 @@
 "use client";
 
 import { Progress } from "@/components/ui/progress";
+import { useToast } from "@/components/ui/use-toast";
 import { useUploadThing } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
 import {
@@ -18,8 +19,9 @@ const UploadConfigPage = () => {
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadProgeress, setUploadProgress] = useState(0);
   const router = useRouter();
+  const { toast } = useToast();
 
-  const {} = useUploadThing("imageUploader", {
+  const { startUpload } = useUploadThing("imageUploader", {
     onClientUploadComplete: ([data]) => {
       const configId = data.serverData.configId;
       startTransition(() => {
@@ -31,9 +33,18 @@ const UploadConfigPage = () => {
     },
   });
 
-  const onDropRejected = () => {};
-  const onDropAccepted = () => {
-    console.log("accepted");
+  const onDropRejected = (rejectedFiles: FileRejection[]) => {
+    const [file] = rejectedFiles;
+    setIsDragOver(false);
+    toast({
+      title: `${file.file.type} type is not supported`,
+      description: "Please choose a PNG, JPG or JPEG image instead",
+      variant: "destructive",
+    });
+  };
+  const onDropAccepted = (acceptedFiles: File[]) => {
+    startUpload(acceptedFiles, { configId: undefined });
+    setIsDragOver(false);
   };
 
   const isUploading = false;
