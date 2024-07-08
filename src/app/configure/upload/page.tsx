@@ -4,12 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/components/ui/use-toast";
 import { useUploadThing } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
-import {
-  Image,
-  ImageIcon,
-  Loader2,
-  MousePointerSquareDashed,
-} from "lucide-react";
+import { ImageIcon, Loader2, MousePointerSquareDashed } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
@@ -21,7 +16,7 @@ const UploadConfigPage = () => {
   const router = useRouter();
   const { toast } = useToast();
 
-  const { startUpload } = useUploadThing("imageUploader", {
+  const { startUpload, isUploading } = useUploadThing("imageUploader", {
     onClientUploadComplete: ([data]) => {
       const configId = data.serverData.configId;
       startTransition(() => {
@@ -47,7 +42,6 @@ const UploadConfigPage = () => {
     setIsDragOver(false);
   };
 
-  const isUploading = false;
   const [isPending, startTransition] = useTransition();
 
   return (
