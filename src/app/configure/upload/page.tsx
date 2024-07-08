@@ -41,7 +41,6 @@ const UploadConfigPage = () => {
               {...getRootProps()}
             >
               <input {...getInputProps()} />
-              asd
             </div>
           )}
         </Dropzone>
