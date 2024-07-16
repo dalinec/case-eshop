@@ -13,7 +13,7 @@ export const reviewsConsts = [
       <p>
         &quot; The case feels durable and I even got a compliment on the design.
         Had the case for two and a half months now and{" "}
-        <span className="bg-slate-800 p-0.5 text-white">
+        <span className="bg-slate-800 px-1 py-0.5 text-white">
           the image is super clear
         </span>
         . On the case I had before, the image started fading into a yellowish
@@ -30,7 +30,7 @@ export const reviewsConsts = [
         &quot; I usually keep my phone together with my keys in my pocket and
         that led to some pretty heavy scratchmarks on all of my last phone
         cases. This one, besides a barely noticable scratch on the corner{" "}
-        <span className="bg-slate-800 p-0.5 text-white">
+        <span className="bg-slate-800 px-1 py-0.5 text-white">
           looks brand new after about half year of using this case
         </span>
         . I dig it! &quot;

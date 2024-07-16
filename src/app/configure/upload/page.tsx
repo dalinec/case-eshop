@@ -28,6 +28,11 @@ const UploadConfigPage = () => {
     },
   });
 
+  const onDropAccepted = (acceptedFiles: File[]) => {
+    startUpload(acceptedFiles, { configId: undefined });
+    setIsDragOver(false);
+  };
+
   const onDropRejected = (rejectedFiles: FileRejection[]) => {
     const [file] = rejectedFiles;
     setIsDragOver(false);
@@ -36,10 +41,6 @@ const UploadConfigPage = () => {
       description: "Please choose a PNG, JPG or JPEG image instead",
       variant: "destructive",
     });
-  };
-  const onDropAccepted = (acceptedFiles: File[]) => {
-    startUpload(acceptedFiles, { configId: undefined });
-    setIsDragOver(false);
   };
 
   const [isPending, startTransition] = useTransition();
