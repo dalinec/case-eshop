@@ -27,7 +27,13 @@ const DesignPage = async ({ searchParams }: PageProps) => {
 
   const { imageUrl, height, width } = configuration;
 
-  return <DesignConfigurator />;
+  return (
+    <DesignConfigurator
+      configId={configuration.id}
+      imageDimensions={{ height, width }}
+      imageUrl={imageUrl}
+    />
+  );
 };
 
 export default DesignPage;
